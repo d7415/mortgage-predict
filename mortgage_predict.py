@@ -42,7 +42,7 @@ for param in sys.argv[1:]:
                 except:
                     raise ValueError("Unable to find date in '%s'" % (param))
         if amount[-1] == "%":
-            ratechanges.append([re.compile(pdate+"$"), amount[:-1]])
+            ratechanges.append([re.compile(pdate+"$"), float(amount[:-1])])
         else:
             if amount[0] in "£$":
                 amount = amount[1:]
