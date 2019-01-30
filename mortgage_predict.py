@@ -21,7 +21,15 @@ def parsedate(pdate):
         raise ValueError("Invalid length: %s (%d)" % (pdate, len(pdate)))
 
 for param in sys.argv[1:]:
-    if "," in param: # Pair of date,paid or date,aer
+    if param[:2] == "--":
+        if param[:12] == "--verbosity=":
+            if param[12] in "dms":
+                verbosity = param[12]
+            else:
+                print("Invalid verbosity level '%s'" % (param[12]))
+        else:
+            print("Unknown option '%s'" % (param))
+    elif "," in param: # Pair of date,paid or date,aer
         [p1, p2] = param.split(",")
         if p1[0] == "/":
             if p1[-1] != "/":
