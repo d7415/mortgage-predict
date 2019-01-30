@@ -83,10 +83,9 @@ while balance > 0:
             paid += p[1]
 
     if verbosity == "d" or (verbosity == "m" and (day.day == monthly or (day.day < monthly and (day+oneday).month > day.month))):
-        print("%8s %12.2f %12.2f %12.2f %8.2f%%" % (daystr, balance/100, interest/100, paid/100, rate))
+        print("%8s %12.2f %12.2f %12.2f %7.2f%%" % (daystr, balance/100, interest/100, paid/100, rate))
         paid = 0
         interest = 0
 
-if verbosity == "s":
-    print("-"*56)
-    print("%8s %12.2f %12.2f %12.2f %8.2f%%" % (day.strftime("%Y%m%d"), balance/100, interest/100, paid/100, rate))
+print("-"*56)
+print("%8s %12.2f %12.2f %12.2f %7.2f%%" % (day.strftime("%Y%m%d"), balance/100, interest/100, paid/100, rate))
