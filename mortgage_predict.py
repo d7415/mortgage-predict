@@ -95,5 +95,6 @@ while balance > 0:
         paid = 0
         interest = 0
 
-print("-"*56)
+if verbosity != "s":
+    print("-"*56)
 print("%8s %12.2f %12.2f %12.2f %7.2f%%" % (day.strftime("%Y%m%d"), balance/100, interest/100, paid/100, rate))
