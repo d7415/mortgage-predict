@@ -1,5 +1,32 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""
+Mortgage predictor
+------------------
+Applies interest and payments to a balance until that balance is zero (or 50 years have passed).
+
+	/mortgage_predict.py £250000 /01,1234.56 "/(05|11)15,3000" 2.50% 20210301,3.45% --verbosity=s
+
+Parameters:
+
+	Initial values:
+		Loan		Initial loan amount. Prefix with £ or $. Default: £400000
+		Interest Rate	Interest rate. Suffix with %. Default: 3.00%
+		Start Date	YYYYMMDD or YYMMDD. Default: Today
+	Events:
+				- Comma separated pairs. e,g, 20210301,3.45% 20200430,£2000 /01,£1000
+				- Date first is preferred but either should work.
+				- One-off events should be YYYYMMDD or YYMMDD.
+				- Recurring events can be prefixed (and optionally suffixed) with '/'
+					- Recurring events are regular expressions, anchored to the end of the YYYYMMDD string.
+		Payment		date,amount. Amount may be prefixed with $ or £ for clarity.
+		Rate Change	date,rate. Interest rate changes to this new rate on the specified date for the remainder of the loan (or until another rate change).
+	Options:
+		Verbosity	--verbosity=s. Verbosity can be 'd' for daily output, 'm' for monthly output or 's' for summary-only output at the end. Default: m
+
+Notes:
+	The summary line shows interest charged and payments made since the last output line.
+"""
 
 import sys
 import datetime
